@@ -31,7 +31,7 @@
 """Utilities for Python proto2 tests.
 
 This is intentionally modeled on C++ code in
-//google/protobuf/test_util.*.
+//third_party/protobuf/test_util.*.
 """
 
 __author__ = 'robinson@google.com (Will Robinson)'
