@@ -30,8 +30,8 @@
 
 #include "google/protobuf/stubs/common.h"
 #include "google/protobuf/test_util.h"
-#include "google/protobuf/unittest.pb.h"
 #include <gtest/gtest.h>
+#include "google/protobuf/unittest.pb.h"
 
 #if LANG_CXX11
 #include <type_traits>

@@ -36,9 +36,6 @@ import copy
 import unittest
 import warnings
 
-from google.protobuf import unittest_import_pb2
-from google.protobuf import unittest_import_public_pb2
-from google.protobuf import unittest_pb2
 from google.protobuf import descriptor_pb2
 from google.protobuf.internal import api_implementation
 from google.protobuf.internal import descriptor_pool_test1_pb2
@@ -54,6 +51,9 @@ from google.protobuf import descriptor_database
 from google.protobuf import descriptor_pool
 from google.protobuf import message_factory
 from google.protobuf import symbol_database
+from google.protobuf import unittest_import_pb2
+from google.protobuf import unittest_import_public_pb2
+from google.protobuf import unittest_pb2
 
 
 warnings.simplefilter('error', DeprecationWarning)
@@ -114,7 +114,7 @@ class DescriptorPoolTestBase(object):
     file_desc5 = self.pool.FindFileContainingSymbol(
         'protobuf_unittest.TestService')
     self.assertIsInstance(file_desc5, descriptor.FileDescriptor)
-    self.assertEqual('google/protobuf/unittest.proto',
+    self.assertEqual('third_party/protobuf/unittest.proto',
                      file_desc5.name)
     # Tests the generated pool.
     assert descriptor_pool.Default().FindFileContainingSymbol(
@@ -142,7 +142,7 @@ class DescriptorPoolTestBase(object):
     file_desc8 = self.pool.FindFileContainingSymbol(
         'protobuf_unittest.TestAllTypes.FOO')
     self.assertIsInstance(file_desc8, descriptor.FileDescriptor)
-    self.assertEqual('google/protobuf/unittest.proto',
+    self.assertEqual('third_party/protobuf/unittest.proto',
                      file_desc8.name)
 
     # TODO(jieluo): Add tests for no package when b/13860351 is fixed.
@@ -576,7 +576,7 @@ class DefaultDescriptorPoolTest(DescriptorPoolTestBase, unittest.TestCase):
 
   def testFindMethods(self):
     self.assertIs(
-        self.pool.FindFileByName('google/protobuf/unittest.proto'),
+        self.pool.FindFileByName('third_party/protobuf/unittest.proto'),
         unittest_pb2.DESCRIPTOR)
     self.assertIs(
         self.pool.FindMessageTypeByName('protobuf_unittest.TestAllTypes'),
@@ -908,12 +908,12 @@ class AddDescriptorTest(unittest.TestCase):
 
     # Files are implicitly also indexed when messages are added.
     self.assertEqual(
-        'google/protobuf/unittest.proto',
+        'third_party/protobuf/unittest.proto',
         pool.FindFileByName(
-            'google/protobuf/unittest.proto').name)
+            'third_party/protobuf/unittest.proto').name)
 
     self.assertEqual(
-        'google/protobuf/unittest.proto',
+        'third_party/protobuf/unittest.proto',
         pool.FindFileContainingSymbol(
             prefix + 'protobuf_unittest.TestAllTypes.NestedMessage').name)
 
@@ -950,12 +950,12 @@ class AddDescriptorTest(unittest.TestCase):
 
     # Files are implicitly also indexed when enums are added.
     self.assertEqual(
-        'google/protobuf/unittest.proto',
+        'third_party/protobuf/unittest.proto',
         pool.FindFileByName(
-            'google/protobuf/unittest.proto').name)
+            'third_party/protobuf/unittest.proto').name)
 
     self.assertEqual(
-        'google/protobuf/unittest.proto',
+        'third_party/protobuf/unittest.proto',
         pool.FindFileContainingSymbol(
             prefix + 'protobuf_unittest.TestAllTypes.NestedEnum').name)
 
@@ -982,9 +982,9 @@ class AddDescriptorTest(unittest.TestCase):
     pool = descriptor_pool.DescriptorPool()
     pool._AddFileDescriptor(unittest_pb2.DESCRIPTOR)
     self.assertEqual(
-        'google/protobuf/unittest.proto',
+        'third_party/protobuf/unittest.proto',
         pool.FindFileByName(
-            'google/protobuf/unittest.proto').name)
+            'third_party/protobuf/unittest.proto').name)
 
     # AddFileDescriptor is not recursive; messages and enums within files must
     # be explicitly registered.

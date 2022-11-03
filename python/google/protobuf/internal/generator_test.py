@@ -42,13 +42,13 @@ __author__ = 'robinson@google.com (Will Robinson)'
 import unittest
 
 from google.protobuf.internal import test_bad_identifiers_pb2
+from google.protobuf import service
+from google.protobuf import symbol_database
 from google.protobuf import unittest_import_pb2
 from google.protobuf import unittest_import_public_pb2
 from google.protobuf import unittest_mset_pb2
 from google.protobuf import unittest_mset_wire_format_pb2
 from google.protobuf import unittest_pb2
-from google.protobuf import service
-from google.protobuf import symbol_database
 from google.protobuf import unittest_custom_options_pb2
 from google.protobuf import unittest_no_generic_services_pb2
 
@@ -215,7 +215,7 @@ class GeneratorTest(unittest.TestCase):
 
   def testFileDescriptor(self):
     self.assertEqual(unittest_pb2.DESCRIPTOR.name,
-                     'google/protobuf/unittest.proto')
+                     'third_party/protobuf/unittest.proto')
     self.assertEqual(unittest_pb2.DESCRIPTOR.package, 'protobuf_unittest')
     self.assertFalse(unittest_pb2.DESCRIPTOR.serialized_pb is None)
     self.assertEqual(unittest_pb2.DESCRIPTOR.dependencies,
@@ -346,9 +346,9 @@ class SymbolDatabaseRegistrationTest(unittest.TestCase):
 
   def testFindFileByName(self):
     self.assertEqual(
-        'google/protobuf/unittest.proto',
+        'third_party/protobuf/unittest.proto',
         symbol_database.Default().pool.FindFileByName(
-            'google/protobuf/unittest.proto').name)
+            'third_party/protobuf/unittest.proto').name)
 
 if __name__ == '__main__':
   unittest.main()

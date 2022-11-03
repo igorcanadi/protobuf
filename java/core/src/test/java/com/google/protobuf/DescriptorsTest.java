@@ -96,10 +96,10 @@ public class DescriptorsTest {
   public void testFileDescriptor() throws Exception {
     FileDescriptor file = UnittestProto.getDescriptor();
 
-    assertThat(file.getName()).isEqualTo("google/protobuf/unittest.proto");
+    assertThat(file.getName()).isEqualTo("third_party/protobuf/unittest.proto");
     assertThat(file.getPackage()).isEqualTo("protobuf_unittest");
     assertThat(file.getOptions().getJavaOuterClassname()).isEqualTo("UnittestProto");
-    assertThat(file.toProto().getName()).isEqualTo("google/protobuf/unittest.proto");
+    assertThat(file.toProto().getName()).isEqualTo("third_party/protobuf/unittest.proto");
 
     assertThat(file.getDependencies()).containsExactly(UnittestImport.getDescriptor());
 
